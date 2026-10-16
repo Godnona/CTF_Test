@@ -5,16 +5,34 @@ using namespace std;
 int main()
 {
     string secret = "GMBH|D0ef_Cb4t1d~";
+    bool flag = true;
 
     string s; getline(cin, s);
-    string res;
-    int n = s.length();
-    for(int i = 0; i < n; i++)
+    if(s.length() != secret.length())
     {
-        char c = s[i];
-        res += char(c + 1);
+        cout << "Sai mat khau!";
+        return 0;
     }
-    if(res == secret)
+
+    int n = s.length() - 1;
+    for(int i = 0; i <= n/2; i++)
+    {
+        char c = char(s[i] + 1);
+        if(c != secret[i])
+        {
+            flag = false;
+            break;
+        }
+
+        char d = char(s[n-i] + 1);
+        if(d != secret[n - i])
+        {
+            flag = false;
+            break;
+        }
+    }
+
+    if(flag == true)
         cout << "Chinh xac! Ban da tim ra Flag.";
     else
         cout << "Sai mat khau!";
